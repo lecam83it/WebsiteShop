@@ -1,8 +1,13 @@
 var express = require('express');
+
 var router = express.Router();
+var productModel = require('../model/product');
+
 //GET home page
 router.get('/', function (req, res) {
-    res.render('index');
+    productModel.find({}, function (req , result) {
+        res.render('index', {data : result});
+    });
 })
 
 module.exports = router;
